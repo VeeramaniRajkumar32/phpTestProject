@@ -41,6 +41,52 @@ function loginCheck(e){
     e.preventDefault()
     let user = document.getElementById('username').value
     let pass = document.getElementById('password').value
+    if(user.value == ''){
+        user.style.border = '1px solid red'
+    } else{
+        // user.style.border = '1px solid #bfc9d4'
+        if(pass.value == ''){
+            pass.style.border = '1px solid red'
+        } else{
+            // pass.style.border = '1px solid #bfc9d4'
+            console.log({user,pass});
+            $.ajax({
+                type: "POST",
+                url: "http://localhost/projects/test/api/login.php",
+                data:{'userName':user,'password': pass},
+                success: function(data){
+                    console.log({data});
+                    if(data == 'Invalid Username!'){
+                        document.getElementById('Message').innerHTML = data
+                        user.style.border = '1px solid red'
+                        pass.style.border = '1px solid #bfc9d4'
+                    } else{
+                        if(data.me == 'Incorrect Password!'){
+                            document.getElementById('Message').innerHTML = data
+                            user.style.border = '1px solid #bfc9d4'
+                            pass.style.border = '1px solid red'
+                        } else{
+                            localStorage.setItem('login_id', data)
+                            $.ajax({
+                                type: "POST",
+                                url: "ajax/sessionSet.php",
+                                data:{'login':data},
+                                success: function(data){
+                                    location.replace('dashboard.php')
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+    }
+}
+
+function signUpCheck(e){
+    e.preventDefault()
+    let user = document.getElementById('username').value
+    let pass = document.getElementById('password').value
     console.log({user,pass});
     if(user.value == ''){
         user.style.border = '1px solid red'

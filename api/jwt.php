@@ -4,11 +4,12 @@
 	use \Firebase\JWT\JWT;
 
 	function createToken($conn,$login_id){
-		$sql = "SELECT * FROM app_control WHERE app_control_id='1'";
+		echo "babschvahc"
+		echo$sql = "SELECT * FROM app_control WHERE id='1'";
 		$result = $conn->query($sql);
 		$row = $result->fetch_assoc();
 
-		$secret_key = $row['jwt_secret'];
+		echo$secret_key = $row['jwt_secret'];
 
 		$issuer_claim = $_SERVER['SERVER_NAME'];
 		$issuedat_claim = microtime(true);
@@ -33,12 +34,12 @@
 
 		$out['current_token'] = JWT::encode($current_token, $secret_key);
 		$out['refresh_token'] = JWT::encode($refresh_token, $secret_key);
-
+		echo $out;
 		return $out;
 	}
 
 	function checkAndGenerateToken($conn,$token){
-		$sql = "SELECT * FROM app_control WHERE app_control_id='1'";
+		$sql = "SELECT * FROM app_control WHERE id='1'";
 		$result = $conn->query($sql);
 		$row = $result->fetch_assoc();
 

@@ -26,7 +26,7 @@
         <div class="form-form">
             <div class="form-form-wrap">
                 <div class="form-container">
-                    <div class="form-content" id="login">
+                    <div class="form-content">
                         <img style="width:100%; height:100px" src="" alt="">
                         <h1 class="">Sign In</h1>
                         <p id="Message" style="margin-bottom: 0px"> in to continue</p>
@@ -47,11 +47,11 @@
                                 </div>
                                 <div class="d-sm-flex justify-content-between">
                                     <div class="field-wrapper">
-                                        <button class="btn btn-primary">Log In</button>
+                                        <button onclick="loginCheck(event)" class="btn btn-primary">Log In</button>
                                     </div>
-                                </div>
                                 <div class="d-sm-flex justify-content-between">
-                                    <a href="signUp.php" class="d-flex pt-3 pr-2 justify-content-end">Sign Up</a>
+                                        <a href="signUp.php" class="d-flex pt-3 justify-content-end">Sign Up</a>
+                                    </div>
                                 </div>
                             </div>
                         </form>
